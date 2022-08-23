@@ -14,14 +14,15 @@
 #         else:
 #             print(-1, end = " ")
 
-from collections import deque
-
 N = int(input())
-nigga = deque(map(int, input().split()))
+nigga = list(map(int, input().split()))
 black = [-1] * N
+index = [0]
 
-for i in range(N-1):
-    if nigga[i] < nigga[i+1]:
-        black[i] = nigga[i+1]
-    else:
-        pass
+for i in range(1,N):
+    while index and nigga[index[-1]] < nigga[i]:
+        black[index[-1]] = nigga[i]
+        index.pop()
+    index.append(i)
+for i in black:
+    print(i, end=' ')
